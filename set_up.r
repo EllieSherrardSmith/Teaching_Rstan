@@ -139,11 +139,11 @@ base2 = extract(stan2)
 
 ## Adjust the plot for the random effects of different studies
 time=seq(1,365,length=365)
+N_IRS = data2$N_IRS
 
 mean_valssp_checker4 = mean_valssp_checker4u = mean_valssp_checker4l = 
   array(dim=c(length(time), N_IRS))
 
-N_IRS = data2$N_IRS
 for(i in 1:N_IRS){
   mean_valssp_checker4[,i] = 1 / (1 + exp(-mean(base2$alpha1[,i]) - mean(base2$alpha2[,i])*time))
   mean_valssp_checker4u[,i] = 1 / (1 + exp(-quantile(base2$alpha1[,i],0.9) - quantile(base2$alpha2[,i],0.9)*time))
